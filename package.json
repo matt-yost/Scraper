@@ -1,0 +1,16 @@
+{
+  "name"         : "content-scrape",
+  "version"      : "0.0.1",
+  "description"  : "Scrapping since 1992.",
+  "main"         : "scraper.js",
+  "dependencies" : {
+    "request"    : "latest",
+    "cheerio"    : "latest",
+    "csv-stringify": "latest"
+  },
+  "repository" : {
+    "type" : "git",
+    "url" : "https://github.com/matt-yost/content-scraper/"
+  },
+  "author" : "Matt Yost",
+}
