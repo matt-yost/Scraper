@@ -212,10 +212,7 @@
         ],
         "space-infix-ops": "error",
         "space-unary-ops": "error",
-        "spaced-comment": [
-            "error",
-            "always"
-        ],
+        "spaced-comment": "off",
         "strict": "off",
         "symbol-description": "error",
         "template-curly-spacing": "error",

@@ -3,21 +3,51 @@
   'use strict';
   // Require modules
   const fs = require('fs');
+
+  /*------------
+    cheerio
+
+    1. Straight forward usage and set up
+    2. Brings the familiarity of JQuery to node
+    3. Widely used: Over 2 million downloads from NPM in the past month
+    4. 80 contributors
+  -------------*/
   const cheerio = require('cheerio');
+
+  /*------------
+    request
+
+    1. Straight forward usage and set up
+    2. Simple way to make HTTP & HTTPS calls, but can be expanded on for more complex task
+    3. Widely used: Over 19 million downloads from NPM in the past month
+    4. 268 contributors
+  -------------*/
   const request = require('request');
+
+  /*------------
+    csv-stringify
+
+    1. Straight forward usage and set up. Tried json2csv initially and found csv-stringify much easier to work with
+    2. Easy to customize options for the CSV
+    3. Widely used: Over 300 thousand downloads from NPM in the past month
+    4. 35 contributors
+  -------------*/
   const csv = require('csv-stringify');
 
-  // Declare base url
+  // Base url
   const url = "http://www.shirts4mike.com/";
 
   // Establish array in global scope for use in muitple functions
   var dataArray = [];
 
+  // Function to handle any errors
   var handleError = function(error) {
+    // Create time stamp
     var d = new Date();
     var message = error.message;
+    // Construct error message
     var errorMessage = '[' + d + '] ' + message + '\n';
-
+    // Append message to 'scraper-error.log' and start a new line
     fs.appendFile('scraper-error.log', errorMessage, function(error) {
       if(error) throw error;
     });
@@ -49,6 +79,7 @@
   var scrape = function(url, body) {
     var $ = cheerio.load(body);
     var data = {
+      // Need to remove price from text
       'Title': $(body).find('div.shirt-details h1').text().slice(4),
       'Price': $(body).find('div.shirt-details span.price').text(),
       'ImageURL': $(body).find('div.shirt-picture img').attr('src'),
