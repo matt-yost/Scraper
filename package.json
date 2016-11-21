@@ -15,5 +15,8 @@
   "author": "Matt Yost",
   "devDependencies": {
     "eslint": "^3.10.2"
+  },
+  "scripts": {
+    "lint": "eslint scraper.js"
   }
 }
